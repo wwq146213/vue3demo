@@ -35,6 +35,7 @@ export default defineConfig({
     additionalLegacyPolyfills: ['regenerator-runtime/runtime'] // 面向IE11时需要此插件
   }),
   AutoImport({
+    imports:['vue', 'vue-router'],
     resolvers: [ElementPlusResolver()],
   }),
   Components({
@@ -69,6 +70,12 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
+    proxy: {
+			'/api': {
+				// target: 'http://47.108.172.21:5001/api/',
+				changeOrigin: true,
+			},
+		},
     port: 3001
   }
 })
